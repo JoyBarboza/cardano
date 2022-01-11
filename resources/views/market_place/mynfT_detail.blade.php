@@ -102,8 +102,19 @@
 <main>
   <section>
     <div class="rows">
+
         
             <h1 class="main_heading">Market Place</h1>
+            <!-- <hr>
+                <div  style="display: flex;">
+                    <h3 style="margin:10px;" class="main_heading">Market Place</h3>
+                    <div class="" style="margin-left: auto;">
+                        
+                        <a href="{{ route('nft.nft_delete') }}" class="nav-link" style="float: right; color: red; margin-left: 25px; border:1px solid red; border-radius:25px !important; padding:2px 15px;">Delete All</a>
+                    </div>
+                </div>
+                    
+            <hr> -->
             <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="card-widget white">
                     <div class="row">
@@ -112,39 +123,29 @@
                                 <div class="row margin-top-20">
                                     <div class="col-md-12">
                                         <h6 style="display: inline-block;color: black;" id="left-code">{{trans('nft.mint_name')}}</h6>
-
-                                        <input type='text' name="name" id="name" value="{{$nft_detail->name}}"/>
-                                        <!-- <label style="display: inline-block;color: black;">{{$nft_detail->name}}</label> -->
+                                        <label style="display: inline-block;color: black;">{{$nft_detail->name}}</label>
                                     </div>         
 
                                     <div class="col-md-12">
                                         <h6 style="display: inline-block;color: black;" id="left-code">{{trans('nft.mint_price')}}</h6>
-
-                                        <input type='text' name="price" id="price" value="{{$nft_detail->price}}"/>
-                                        <!-- <label style="display: inline-block;color: black;">{{$nft_detail->price}} CSM</label> -->
+                                        <label style="display: inline-block;color: black;">{{$nft_detail->price}} CSM</label>
                                     </div>   
 
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <h6 style="display: inline-block;color: black;" id="left-code">Royality Price</h6>
-
-                                        <!-- <input type='text' name="price" id="price" value="{{$nft_detail->price}}" readonly/> -->
                                         <label style="display: inline-block;color: black;">{{$nft_detail->royalty}} CSM</label>
-                                    </div> 
+                                    </div>  -->
 
                                     <div class="col-md-12">
                                         <h6 style="display: inline-block;color: black;" id="left-code">{{trans('nft.mint_descripition')}}</h6>
 
-                                        <!-- <textarea readonly>{{$nft_detail->descripition}}</textarea> -->
                                         <label style="display: inline-block;color: black;">{{$nft_detail->descripition}}</label>
                                     </div>   
 
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <h6 style="display: inline-block;color: black;" id="left-code">{{trans('nft.ipfs_url')}}</h6>
-
-                                        <!-- <input type='text' name="ipfs_url" id="ipfs_url" value="{{$nft_detail->ipfs_url}}" readonly /> -->
                                         <label style="display: inline-block;color: black;">{{$nft_detail->ipfs_url}}</label>
-                                        <!-- <button type="button" id="hash" name="hash" onclick="download()">Download</button> -->
-                                    </div> 
+                                    </div>  -->
 
                                     <div class="col-md-12">
                                         <h6 style="display: inline-block;color: black;" id="left-code">Image</h6>
@@ -162,14 +163,17 @@
                                 </div>
                                  <div class="col-md-12">
                                     <!-- <button type="submit" class="btn mint_submit btn-block btn-primary">{{trans('nft.submit')}}</button> -->
-                                    <button type="submit" class="btn mint_submit btn-block btn-primary" onclick="resellNft();">Resell NFT</button>
+                                    <!-- <button type="submit" class="btn mint_submit btn-block btn-primary" onclick="resellNft();">Resell NFT</button> -->
                                 </div>
                                                 
                                 <input type="hidden" name="token_id" value="{{$nft_detail->token_id}}" id="token_id">
                                 <input type="hidden" name="type" value="{{$nft_detail->type}}" id="type">
                                 <input type="hidden" name="nft_id" value="{{$nft_detail->id}}" id="nft_id">
+
+                                <a href="{{ route('presale.user_nft') }}" class="nav-link" style="float: right; color: red; margin-left: 25px; border:1px solid red; border-radius:25px !important; padding:2px 15px;">Back</a>
                             </div>
                         </div>
+
                     </div>
                 </div>
   </section>

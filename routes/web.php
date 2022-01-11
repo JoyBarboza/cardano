@@ -268,6 +268,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['rol
     Route::get('reward','SettingController@reward')->name('reward');
     Route::post('update_reward','SettingController@update_reward')->name('update_reward');
     Route::get('active_user','SettingController@active_user')->name('active_user');
+
+    Route::get('bnb_csm','SettingController@bnb_csm_coveter')->name('bnb_csm');
+    Route::post('update_bnb_csm','SettingController@update_bnb_csm')->name('update_bnb_csm');
     
     Route::get('active','SettingController@active')->name('active');
     Route::get('deactive','SettingController@deactive')->name('deactive');

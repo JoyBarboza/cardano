@@ -18,6 +18,7 @@ use App\User;
 use App\NftItem;
 use App\ActiveUser;
 use App\Reward;
+use App\BnbCsmCoveter;
 
 class SettingController extends Controller
 {
@@ -430,18 +431,18 @@ class SettingController extends Controller
         }
     }
 
-    public function deactive(Request $request){
-          $active_user = ActiveUser::
+    public function deactive(Request $request)
+    {
+        $active_user = ActiveUser::
             leftJoin('users', function($join) {
               $join->on('users.id', '=', 'active_users.user_id');
             })
             ->orderBy('active_users.id', 'DESC')
             ->select([
                 'active_users.id','active_users.user_id','active_users.status','users.first_name','users.cjm_wallet','users.eth_wallet','steps','bullets_shot','total_time'
-            ])
-            ->get();
-
-        if(!empty($active_user)){
+            ])->get();
+        if(!empty($active_user))
+        {
             foreach ($active_user as $key => $value) 
             {
 
@@ -457,4 +458,27 @@ class SettingController extends Controller
             return redirect()->back();
         }
     }
+
+    public function bnb_csm_coveter(Request $request)
+    {
+        
+        $bnb_csm = BnbCsmCoveter::where('id','1')->first();
+
+
+       return view('setting.bnb_csm_coveters',compact('bnb_csm'));
+    }
+
+    public function update_bnb_csm (Request $request){
+
+        $data               =   BnbCsmCoveter::findOrFail($request->id);
+        $data->csm          =   $request->csm;
+        $data->bnb          =   $request->bnb;
+        // $data->save();
+
+        if($data->save()){
+            flash()->success('BNB value update successfully')->important();
+        }
+        return redirect()->back();
+    }
+    
 }

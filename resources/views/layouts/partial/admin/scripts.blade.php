@@ -4,7 +4,7 @@
 <script src="{{ asset('assets/global/plugins/ie8.fix.min.js') }}"></script> 
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
-<script src="{{ asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script> -->
 <script src="{{ asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
@@ -20,11 +20,18 @@
 <script src="{{ asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <!-- END THEME LAYOUT SCRIPTS -->
 <!-- START PAGE LEVEL SCRIPTS -->
 <script type="text/javascript">
+	   @if(session('status'))
+            toastr.success("{{ session('status') }}");
+        @endif
+        @if(session('status_err'))
+            toastr.error("{{ session('status_err') }}");
+        @endif  
+        
 	var language = $('html').attr('lang');
 	//~ var baseURL = '{!! url("/") !!}/' + language + '/';
 	var baseURL = window.location.origin+'/' + language + '/';

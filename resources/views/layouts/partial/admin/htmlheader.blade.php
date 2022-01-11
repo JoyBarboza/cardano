@@ -36,6 +36,22 @@
     @stack('css')
     <!-- END PAGE LEVEL STYLES -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="{{ asset('parsley.min.js') }}"></script>
+
+    <script src="{{ asset('toastr.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('toastr.min.css') }}">
+
+    <style type="text/css">
+    .parsley-errors-list{
+        color: red;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+  </style>
+
     <style>
         .table .btn{margin-top:2px!important}
         .page-sidebar

@@ -320,6 +320,16 @@
 				</a>
 			</li> -->
 
+            <li class="nav-item{{request()->is('*/admin/bnb_csm')?' active open':''}}">
+                <a href="{{ route('admin.bnb_csm') }}" class="nav-link">
+                    <i class="icon-info"></i>
+                    <span class="title">BNB To CSM</span>
+                    @if(request()->is('*/admin/bnb_csm'))
+                        <span class="selected"></span>
+                    @endif
+                </a>
+            </li>
+
             <li class="nav-item{{request()->is('*/admin/reward')?' active open':''}}">
                 <a href="{{ route('admin.reward') }}" class="nav-link">
                     <i class="icon-info"></i>

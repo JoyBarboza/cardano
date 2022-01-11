@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use App\ConvertCurrency;
 use App\User;
+use App\BnbCsmCoveter;
 
 class PreSaleController extends Controller
 {
@@ -193,7 +194,10 @@ class PreSaleController extends Controller
         $symbol = env('TOKEN_SYMBOL');
         //~ $presales = $this->presale->orderBy('start_date')->get();
         $presales = $this->presale->where('status',1)->whereRaw('presales.total_coin_unit > presales.sold_coin')->limit(1)->get();
-        return view('presale.buy', compact('presales','symbol'));
+
+        $bnb_csm = BnbCsmCoveter::where('id','1')->first();
+
+        return view('presale.buy', compact('presales','symbol','bnb_csm'));
     }
 
     public function buyJPC(Request $request)

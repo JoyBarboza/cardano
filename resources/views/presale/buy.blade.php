@@ -6,7 +6,7 @@
         
             <h1 class="main_heading">{{trans('presale/buy.buy_now')}}</h1>
             <div class="" style="color: #000">
-             <label>Note : 1 CSM = 0.00003 BNB</label>
+             <label>Note : 1 CSM = {{$bnb_csm->bnb}} BNB</label>
                 <!--
                   <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                   <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
@@ -40,6 +40,7 @@
             <!-- <form class="form-horizontal onSubmitdisableButton" action="{{ route('presale.buyCSM.post') }}" method="post"> -->
                 <!-- {{ csrf_field() }} -->
                 <div class="row">
+                  <input type="hidden" name="bnb_price" value="{{$bnb_csm->bnb}}" id="bnb_price" class="bnb_price">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <!-- <label>{{trans('presale/buy.pay_currency')}} (USD):</label> -->
@@ -119,9 +120,6 @@
     {
       console.log(amt);
 
-      
-
-
       var csm_amount = amt;
       console.log(csm_amount);
 
@@ -131,7 +129,9 @@
             return;
       }
 
-      bnb_amount = 0.00003 * csm_amount;
+      var bnb_price = $('.bnb_price').val();
+
+      var bnb_amount = bnb_price * csm_amount;
       // $('#csm_amount').val('120');
       // $('#csm_amount').val(bnb_amount);
          
@@ -208,27 +208,26 @@
               $("#checkMetamask").modal('show');
           }
 
-          bnb_amount = 0.00003 * csm_amount;
+          var bnb_price = $('.bnb_price').val();
+
+          var bnb_amount = bnb_price * csm_amount;
              
           console.log(bnb_amount);
           console.log(bnb_amount.toString());
 
-          var tokens = web3.utils.toWei(bnb_amount.toString(), 'ether')
+          // var tokens = web3.utils.toWei(bnb_amount.toString(), 'ether')
 
-          var weiValue = web3.utils.toBN(tokens)
-
-
-          console.log('tokens',bnb_amount);
-          console.log('weiValue',bnb_amount);
-          // var weiValue = web3.utils.toBN(bnb_amount)
+          // var weiValue = web3.utils.toBN(tokens)
 
 
-          // const weiValue = Web3.utils.toWei(
-          //     web3.utils.toBN(bnb_amount), // converts Number to BN, which is accepted by `toWei()`
-          //     'ether'
-          // );
+          var amount = bnb_amount.toFixed(5);
+          var tokens = web3.utils.toWei(amount.toString(), 'ether')
+          var bntokens = web3.utils.toBN(tokens)
 
-          console.log("The weiValue is: ",weiValue);
+
+          console.log('tokens',tokens);
+          console.log('weiValue',bntokens);
+
 
           $('#csm_amount').val(bnb_amount);
 
@@ -263,8 +262,8 @@
 
           await window.contract.methods
             // .transferToken("0x79319A973Be6C6F0cbad2206ea4F6573A9ecF223", weiValue,'120')
-            .transferToken("0x79319A973Be6C6F0cbad2206ea4F6573A9ecF223", weiValue,csm_amount)
-            .send({ from: receiverAddress, value: weiValue,gas: 4000000 }, function (err, res) {
+            .transferToken("0x79319A973Be6C6F0cbad2206ea4F6573A9ecF223", bntokens,csm_amount)
+            .send({ from: receiverAddress, value: bntokens,gas: 4000000 }, function (err, res) {
               if (err) {
                 console.log("An error occured", err)
                 return

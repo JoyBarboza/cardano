@@ -79,7 +79,7 @@
                             <div class="col-md-3">
                                 <div class="alpha_card_game">    
                                     <div class="alpha_card_game_hdng">
-                                        <a href="#" class="alpa-name_gm">
+                                        <a href="{{ route('presale.mynfT_detail', encrypt($v['id'])) }}" class="alpa-name_gm">
                                             <h4>{{$v['name']}}</h4>
                                         </a>
                                         @php 
